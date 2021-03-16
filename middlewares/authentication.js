@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
     try {
-        const signedData = jwt.verify(req.headers.access_token, 'my-signing-secret');
+        const signedData = jwt.verify(req.headers.access_token, process.env.SecretKey);
         console.log(signedData);
         req.signedData =  signedData;
         next();
