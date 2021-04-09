@@ -39,7 +39,7 @@ userRouter.post('/login'  , async (req,res)=>{      // the login router
     if(!user) throw new Error("wrong username or password");
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) throw new Error("wrong username or password");
-    const token = jwt.sign({ id: user.id }, 'my-signing-secret');
+    const token = jwt.sign({ id: user.id },  process.env.SecretKey);
     res.json({ token });
 } catch (err) {
     console.error(err);
